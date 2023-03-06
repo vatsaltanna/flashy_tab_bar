@@ -200,22 +200,22 @@ class _FlashTabBarItem extends StatelessWidget {
                 )),
 
             /// This is the selected item indicator
-            Align(
-              alignment: Alignment.bottomCenter,
-              child: AnimatedOpacity(
+            LayoutBuilder(builder: (context, constraints) {
+              return Align(
+                alignment: Alignment.bottomCenter,
+                child: AnimatedContainer(
+                  width: isSelected ? constraints.maxWidth : 0.0,
                   duration: animationDuration,
-                  opacity: isSelected ? 1.0 : 0.0,
-                  child: Container(
-                    width: 5,
-                    height: 5,
-                    alignment: Alignment.bottomCenter,
-                    margin: const EdgeInsets.all(5),
-                    decoration: BoxDecoration(
-                      color: item.activeColor,
-                      borderRadius: BorderRadius.circular(2.5),
-                    ),
-                  )),
-            )
+                  height: 5,
+                  alignment: Alignment.bottomCenter,
+                  margin: const EdgeInsets.all(5),
+                  decoration: BoxDecoration(
+                    color: item.activeColor,
+                    borderRadius: BorderRadius.circular(2.5),
+                  ),
+                ),
+              );
+            })
           ],
         ));
   }
